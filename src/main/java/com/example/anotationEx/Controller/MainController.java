@@ -18,6 +18,7 @@ public class MainController {
     @GetMapping("")
     public void main(){
         System.out.println(mainVO.getId());
+        System.out.println(mainVO.getName());
     }
 
 }

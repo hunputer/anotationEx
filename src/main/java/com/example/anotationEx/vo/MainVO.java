@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
-public class MainVO {
+public class MainVO{
 
     private String id;
     private String name;
