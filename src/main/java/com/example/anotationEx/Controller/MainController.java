@@ -1,6 +1,6 @@
 package com.example.anotationEx.Controller;
 
-import com.example.anotationEx.vo.MainVO;
+import com.example.anotationEx.vo.BeanTestVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     @Autowired
-    private MainVO mainVO;
+    private BeanTestVO beanTestVO;
 
     @GetMapping("")
     public void main(){
-        System.out.println(mainVO.getId());
-        System.out.println(mainVO.getName());
+        System.out.println(beanTestVO.getVar1());
+        System.out.println(beanTestVO.getVar2());
     }
 
 }
