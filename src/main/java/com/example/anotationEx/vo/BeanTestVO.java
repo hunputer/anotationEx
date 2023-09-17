@@ -9,5 +9,6 @@ public class BeanTestVO{
 
     private String var1;
     private String var2;
+    private EnumEx enumEx;
 
 }

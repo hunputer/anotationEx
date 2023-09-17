@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -19,6 +20,11 @@ public class MainController {
     public void main(){
         System.out.println(beanTestVO.getVar1());
         System.out.println(beanTestVO.getVar2());
+    }
+
+    @GetMapping("/ex")
+    public void ex(@ModelAttribute BeanTestVO beanTestVO){
+        System.out.println(beanTestVO.getEnumEx());
     }
 
 }
