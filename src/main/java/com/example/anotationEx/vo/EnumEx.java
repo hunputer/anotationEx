@@ -9,10 +9,11 @@ import lombok.Setter;
 @Getter
 @RequiredArgsConstructor
 public enum EnumEx {
-    NEW("a"),
-    ONGOING("b");
+    NEW("a","abc"),
+    ONGOING("b", "res");
 
     public final String a;
+    public final String b;
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static EnumEx from(@JsonProperty("a") String abc){

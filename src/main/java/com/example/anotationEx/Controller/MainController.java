@@ -1,6 +1,7 @@
 package com.example.anotationEx.Controller;
 
 import com.example.anotationEx.vo.BeanTestVO;
+import com.example.anotationEx.vo.EnumEx;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/main")
@@ -24,8 +27,12 @@ public class MainController {
     }
 
     @GetMapping("/ex")
-    public void ex(@RequestBody BeanTestVO beanTestVO){
-        System.out.println(beanTestVO.getEnumEx());
+    public void ex(@ModelAttribute BeanTestVO beanTestVO){
+        List<EnumEx> enumExList = beanTestVO.getEnumEx();
+
+        for(EnumEx ex : enumExList){
+            System.out.println(ex);
+        }
     }
 
 }
