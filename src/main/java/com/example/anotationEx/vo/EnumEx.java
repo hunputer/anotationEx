@@ -15,14 +15,14 @@ public enum EnumEx implements EnumMapperType {
     NEW("a","abc"),
     ONGOING("b", "res");
 
-    public final String a;
+    public final String id;
     public final String b;
 
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static EnumEx from(@JsonProperty("a") String abc){
         for(EnumEx enumEx : EnumEx.values()){
-            if(abc.equalsIgnoreCase(enumEx.getA())){
+            if(abc.equalsIgnoreCase(enumEx.getId())){
                 return enumEx;
             }
         }

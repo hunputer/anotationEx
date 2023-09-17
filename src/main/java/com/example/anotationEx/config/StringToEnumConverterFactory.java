@@ -12,17 +12,16 @@ import java.util.stream.Collectors;
 public class StringToEnumConverterFactory implements ConverterFactory<String, Enum<? extends EnumMapperType>> {
     @Override
     public <T extends Enum<? extends EnumMapperType>> Converter<String, T> getConverter(Class<T> targetType) {
-        return new LegacyCodeToEnumConverter<>(targetType);
+        return new IdCodeToEnumConverter<>(targetType);
     }
 
-    private static final class LegacyCodeToEnumConverter<T extends Enum<? extends EnumMapperType>> implements Converter<String, T> {
+    private static final class IdCodeToEnumConverter<T extends Enum<? extends EnumMapperType>> implements Converter<String, T> {
 
         private final Map<String, T> map;
 
-        public LegacyCodeToEnumConverter(Class<T> targetEnum) {
-            T[] enumConstants = targetEnum.getEnumConstants();
-            map = Arrays.stream(enumConstants)
-                    .collect(Collectors.toMap(enumConstant -> ((EnumMapperType) enumConstant).getA(), Function.identity()));
+        public IdCodeToEnumConverter(Class<T> targetEnum) {
+            map = Arrays.stream(targetEnum.getEnumConstants())
+                    .collect(Collectors.toMap(enumConstant -> ((EnumMapperType) enumConstant).getId(), Function.identity()));
         }
 
         @Override
@@ -32,13 +31,11 @@ public class StringToEnumConverterFactory implements ConverterFactory<String, En
                 return null;
             }
 
-            //해당 값 map 에서 추출
-            T enumValue = map.get(source);
-            //해당 값이 map 에 존재하지 않을 경우 Exception 처리
-            if (enumValue == null) {
+            T value = map.get(source);
+            if (value == null) {
                 throw new IllegalArgumentException("IllegalArgumentException");
             }
-            return enumValue;
+            return value;
         }
     }
 }
