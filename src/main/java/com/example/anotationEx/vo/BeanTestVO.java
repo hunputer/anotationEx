@@ -12,5 +12,6 @@ public class BeanTestVO{
     private String var1;
     private String var2;
     private List<EnumEx> enumEx;
+    private List<EnumEx2> enumExAbc;
 
 }

@@ -27,7 +27,7 @@ public class MainController {
     }
 
     @GetMapping("/ex")
-    public void ex(@RequestBody BeanTestVO beanTestVO){
+    public void ex(@ModelAttribute BeanTestVO beanTestVO){
         List<EnumEx> enumExList = beanTestVO.getEnumEx();
 
         for(EnumEx ex : enumExList){

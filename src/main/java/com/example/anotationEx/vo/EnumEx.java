@@ -12,11 +12,12 @@ import java.util.Arrays;
 @Getter
 @RequiredArgsConstructor
 public enum EnumEx implements EnumMapperType {
-    NEW("a","abc"),
-    ONGOING("b", "res");
+    NEW("a","abc",1),
+    ONGOING("b", "res", 2);
 
     public final String id;
     public final String b;
+    public final int abc;
 
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)

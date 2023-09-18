@@ -17,11 +17,11 @@ public class StringToEnumConverterFactory implements ConverterFactory<String, En
 
     private static final class IdCodeToEnumConverter<T extends Enum<? extends EnumMapperType>> implements Converter<String, T> {
 
-        private final Map<String, T> map;
+        private final Map<Integer, T> map;
 
         public IdCodeToEnumConverter(Class<T> targetEnum) {
             map = Arrays.stream(targetEnum.getEnumConstants())
-                    .collect(Collectors.toMap(enumConstant -> ((EnumMapperType) enumConstant).getId(), Function.identity()));
+                    .collect(Collectors.toMap(enumConstant -> ((EnumMapperType) enumConstant).getAbc(), Function.identity()));
         }
 
         @Override
@@ -31,7 +31,15 @@ public class StringToEnumConverterFactory implements ConverterFactory<String, En
                 return null;
             }
 
-            T value = map.get(source);
+            Integer legacyCode = null;
+            try {
+                legacyCode = Integer.parseInt(source);
+            } catch (Exception e) {
+                // 변환 실패시 Exception 처리
+                throw new IllegalArgumentException("IllegalArgumentException");
+            }
+
+            T value = map.get(legacyCode);
             if (value == null) {
                 throw new IllegalArgumentException("IllegalArgumentException");
             }
